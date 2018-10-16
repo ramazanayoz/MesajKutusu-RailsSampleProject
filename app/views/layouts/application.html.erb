@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MesajKutusu</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  
+	<div class="navbar navbar-dafault">  <!--  ##2 bootstrap -->
+		<div class ="container">	<!--  ##2 gem bootstrap -->
+			<div class="navbar-header"> 	<!--  ##2 gem bootstrap -->
+				<%= link_to "Mesaj Kutusu", root_path, class:"navbar-brand" %>  <!--  ##2 gem bootstrap -->
+				<!--http://localhost:3000/messages -->
+			</div>        <!--  ##2 gem bootstrap -->
+			<ul class="nav navbar-nav">
+				<% unless user_signed_in? %> 
+				<li><%= link_to "Üye Ol",new_user_registration_path %></li>
+				<!--http://localhost:3000/users/sign_up -->
+				<% end %> 
+				<% if user_signed_in? %><!-- kullanıcı giriş yaptıysa -->
+					<li><%= link_to "Oturumu Kapat",destroy_user_session_path, method: :delete %></li>
+					<!-- http://localhost:3000/users/sign_out -->
+					<!-- destroy verblerde method: :delete kullanılır -->
+				<% else %>
+					<li> <%= link_to "Giriş Yap",new_user_session_path %></li>
+					<!-- http://localhost:3000/users/sign_in  -->
+				
+				<% end %>
+			</ul>
+			<% if user_signed_in? %>
+				<p><%= link_to "Yeni Mesaj Ekle", new_message_path, class: "navbar-right navbar-text navbar-link" %></p>
+				<!-- http://localhost:3000/messages/new-->
+			<%end %>
+		</div>  <!--  ##2 gem bootstrap -->
+	</div> <!--  ##2 gem bootstrap -->
+
+  
+       <p class="notice"><%= notice %></p> <!-- gem devise -->
+       <p class="alert"><%= alert %></p>   <!-- gem devise -->
+	   
+   <div class ="container">   <!--  ##5  -->
+      <%= yield %>  <!--  ##5  -->
+  </div>
+  
+  </body>
+</html>

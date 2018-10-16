@@ -1,0 +1,6 @@
+<!--############################-->
+<h1>Yorumu Düzenle</h1>
+<%= simple_form_for([@message, @comment]) do |f| %>
+	<%= f.input :content, label: "Yorum" %>
+	<%= f.button :submit %>
+<% end %>

@@ -1,0 +1,5 @@
+<!--###comment için form oluşturduk  -->
+<%= simple_form_for([@message, @message.comments.build]) do |f| %>
+	<%= f.input :content, label: "Yorum Yap" %>
+	<%= f.button :submit %>
+<% end %>

@@ -1,0 +1,21 @@
+<!-- http://localhost:3000/messages/ -->
+
+
+<% @messages.each do |message| %>   <!-- controller index methodundan @messages verileri veri tabanından  iterate çekiliyor -->
+	<div class = "col-md-4"> <!-- ##5 -->
+		<div class ="message"> <!-- ##5 -->
+			<h2 class= message-title> <%= message.title %> </h2> <!-- ##5 -->
+			<%= link_to "mesajı göster",message_path(message), class: "btn-custom" %>  <!##5 --"btn btn-default" -->
+			
+			<!-- message_path(message) show methodun,  bootstrap tarafı class: "btn btn-default",http://localhost:3000/messages/5   -->
+		</div>
+	</div>
+<% end %>
+
+
+<% if user_signed_in? %>
+	<%= link_to "Yeni Mesaj", new_message_path %>
+	<!--http://localhost:3000/messages/new-->
+<% end %>
+
+<!--HTML  DÜZENİNDE DEĞİLSE O KOD BOOTSTRAPANDR -->

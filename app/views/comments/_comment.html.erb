@@ -1,0 +1,14 @@
+<div class="comment"><!--##5 -->	
+	<!--comment için ###2 -->
+	<p class ="comment-content"><%= comment.content %></p> <!--###2 --><!--##5 -->
+	<p class ="comment-posted-by">Posted by <%= comment.user.email %> <%= time_ago_in_words(comment.created_at) %> ago </p><!--###2 --> <!--##5 -->
+
+	<div class = "links" <!--##5 -->
+		<% if user_signed_in? %> <!--##2 -->
+			<% if comment.user_id == current_user.id %> <!--###2 -->
+				<%= link_to "Edit",edit_message_comment_path(comment.message, comment) %> <!--###2 -->
+				<%= link_to "Delete", message_comment_path(comment.message, comment), method: :delete, data: { confirm: "Are you sure ?"} %> <!--###2 -->
+			<%end%>
+		<%end%>
+	</div>
+</div>

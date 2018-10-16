@@ -1,0 +1,28 @@
+<div class="col-md-8 col-md-offset-2" > <!-- ##5 -->
+	<div class = "message-show"> <!-- ##5 -->
+		<!--http://localhost:3000/messages/3-->
+		<h2><%= @message.title %></h2>  
+		<p class= "message-posted-by">Posted by <%= @message.user.email %> <%= time_ago_in_words(@message.created_at) %> ago </p> <!-- ##5 -->
+		<p class= "message-desc"><%= @message.description %></p> <!-- ##5 -->
+
+		<h3>Yorumlar:</h3>     <!--önceden yapılan yorumları gösterir -->
+		<%= render @message.comments %> 
+
+
+		<h3 class = "reply-to-msg">Yorum Yap:</h3> <!-- ##5 -->
+		<%= render 'comments/form' %>
+
+		<div class= "links btn-group"> <!-- ##5 -->
+			<%= link_to "Geri Dön", root_path, class:"btn btn-default"%>   <!-- ##5 -->
+			<% if user_signed_in? %>
+				<% if @message.user_id == current_user.id %>
+					<!--http://localhost:3000/ indexe yönenir -->
+					<%= link_to "Düzenle", edit_message_path(@message), class:"btn btn-default" %>  <!-- ##5 --> 
+					<!-- buraya yönlenir http://localhost:3000/messages/3/edit -->
+					<%= link_to "Mesajı Sil", message_path(@message), method: :delete, data: {confirm: "Are you sure"}, class:"btn btn-default" %> <!-- ##5 -->
+					<!--http://localhost:3000/ indexe yönenir bu kısım pop-up onay data: {confirm: "Are you sure"}-->
+				<%end%>
+			<% end %>
+		</div>
+	</div>
+</div>
